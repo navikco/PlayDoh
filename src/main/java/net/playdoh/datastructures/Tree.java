@@ -1,6 +1,7 @@
 package net.playdoh.datastructures;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -24,6 +25,7 @@ public class Tree {
      *         5
      */
     @Getter
+    @Setter
     public static class Node {
 
         Node left;

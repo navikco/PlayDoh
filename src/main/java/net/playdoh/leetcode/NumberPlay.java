@@ -243,6 +243,7 @@ public class NumberPlay {
                 return result;
             }
             s = result + "";
+            num = result;
         }
         return num;
     }
