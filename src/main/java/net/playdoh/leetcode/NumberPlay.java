@@ -10,6 +10,8 @@ public class NumberPlay {
         System.out.println("Reverse of Integer [-450] :::>>> " + numberPlay.reverse(-450));
 
         System.out.println("Palindrom String? [45054] :::>>> " + numberPlay.isPalindrome(45054));
+        System.out.println("Palindrom String? [45034] :::>>> " + numberPlay.isPalindrome(45034));
+        System.out.println("Palindrom String? [450054] :::>>> " + numberPlay.isPalindrome(450054));
 
         System.out.println("Roman to Integer [MCMXCIV] :::>>> " + numberPlay.romanToInt("MCMXCIV"));
 

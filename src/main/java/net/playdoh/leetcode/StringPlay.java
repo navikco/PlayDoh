@@ -25,7 +25,8 @@ public class StringPlay {
         System.out.println("String Palindrome with ONE Bad Character [deeee] :::>>> " + stringPlay.validPalindromeDeleteOneChar("deeee"));
         System.out.println("String Palindrome with ONE Bad Character [abcba] :::>>> " + stringPlay.validPalindromeDeleteOneChar("abcba"));
 
-        System.out.println("String Anagram :::>>> " + stringPlay.isAnagram("nagAram", "Anagram"));
+        System.out.println("String Anagram [nagAram, Anagram] :::>>> " + stringPlay.checkAnagram("nagAram", "Anagram"));
+        System.out.println("String Anagram [nagAram, Anagam] :::>>> " + stringPlay.checkAnagram("nagAram", "Anagam"));
 
         System.out.println("Word Patterns Aligned[abab][dog cat dog cat] :::>>> " + stringPlay.wordPattern("abab", "dog cat dog cat"));
         System.out.println("Word Patterns Aligned[abba][dog dog dog dog] :::>>> " + stringPlay.wordPattern("abba", "dog dog dog dog"));
@@ -245,34 +246,26 @@ public class StringPlay {
         return true;
     }
 
-    public boolean isAnagram(String s, String t) {
+    public boolean checkAnagram(String s, String t) {
 
         if (s.length() != t.length()) {
-            return false;
+            return  false;
         }
-        Hashtable<Character, Integer> anagram = new Hashtable<>();
-        int length = s.length();
-        for (int i = 0, j = length - 1; i < length; i++, j--) {
 
-            updateAnagram(anagram, s.charAt(i), 1);
-            updateAnagram(anagram, t.charAt(i), -1);
-            updateAnagram(anagram, s.charAt(j), 1);
-            updateAnagram(anagram, t.charAt(j), -1);
+        int []chars = new int[256];
+
+        for (int i = 0; i < s.length(); i++) {
+
+            chars[s.charAt(i)]++;
+            chars[t.charAt(i)]--;
         }
-        return anagram.isEmpty();
-    }
 
-    private void updateAnagram(Hashtable<Character, Integer> anagram, char c, int move) {
-        Integer charCount = anagram.get(c);
-        if (charCount != null) {
-            if (charCount + move == 0) {
-                anagram.remove(c);
-            } else {
-                anagram.put(c, charCount + move);
+        for (int count : chars) {
+            if (count != 0) {
+                return false;
             }
-        } else {
-            anagram.put(c, move);
         }
+        return true;
     }
 
     public boolean wordPattern(String pattern, String s) {

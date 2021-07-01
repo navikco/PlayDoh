@@ -35,21 +35,18 @@ public class DuplicateElements {
         int i = 0;
         int j = a.length - 1;
         while (i <= j) {
-            if (a[i] == a[j]) {
-                if (nums.containsKey(a[i])) {
-                    nums.replace(a[i], nums.get(a[i]).intValue() + 2);
-                } else {
-                    nums.put(a[i], (i == j) ? 1 : 2);
-                }
-            } else {
-                addToNums(nums, a[i], 1);
-                addToNums(nums, a[j], 1);
+
+            addToNums(nums, a[i]);
+            if (i != j) {
+
+                addToNums(nums, a[j]);
             }
+
             i++;
             j--;
         }
 
-        for(int num : nums.keySet()) {
+        for (int num : nums.keySet()) {
 
             if (nums.get(num) == 1) {
                 return num;
@@ -58,11 +55,11 @@ public class DuplicateElements {
         return 0;
     }
 
-    private static void addToNums(Map<Integer, Integer> nums, int num, int increment) {
+    private static void addToNums(Map<Integer, Integer> nums, int num) {
         if (nums.containsKey(num)) {
-            nums.replace(num, nums.get(num).intValue() + increment);
+            nums.replace(num, nums.get(num).intValue() + 1);
         } else {
-            nums.put(num, increment);
+            nums.put(num, 1);
         }
     }
 }

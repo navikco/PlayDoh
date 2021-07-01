@@ -8,21 +8,23 @@ public class Memoizer {
     public static void main(String[] args) {
 
         int[] memoizer = new int[15];
-        System.out.println("Fab[15] :>>> " + fab(15, memoizer));
+        System.out.println("Fab[15] :>>> " + fib(15, memoizer));
 
-        System.out.println("Climbing Stairs [5] :>>> " + climbStairs(15));
+        System.out.println("ClimbingStairs [4] :>>> " + climbStairs(4));
+        System.out.println("CountWays [4] :>>> " + countWays(4));
+        System.out.println("CountStairsCombinations [4] :>>> " + countStairsCombinations(4));
     }
 
-    private static int fab(int num, int []memoizer) {
+    private static int fib(int num, int []memoizer) {
 
         System.out.println("Recursion ::: " + num);
 
         if (num <= 1)
-            return 1;
+            return num;
 
         if (memoizer[num - 1] == 0) {
 //            System.out.println("Memoizer ::: " + (num - 1));
-            memoizer[num - 1] = fab(num - 1, memoizer) + fab(num - 2, memoizer);
+            memoizer[num - 1] = fib(num - 1, memoizer) + fib(num - 2, memoizer);
         }
 
         return memoizer[num - 1];
@@ -45,5 +47,28 @@ public class Memoizer {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
         return dp[n];
+    }
+
+    public static int countWays(int steps) {
+
+        return fib(steps + 1, new int[steps + 1]);
+    }
+
+    public static int countStairsCombinations(int steps) {
+
+        if (steps <= 1) {
+            return steps;
+        }
+
+        int first = 1;
+        int second = 1;
+        int total = 0;
+
+        for (int i = 2; i <= steps; i++) {
+            total = first + second;
+            first = second;
+            second = total;
+        }
+        return total;
     }
 }

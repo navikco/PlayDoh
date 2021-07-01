@@ -49,6 +49,6 @@ public class BalancedParanthesis {
             }
         }
 
-        return openStack.size() == 0;
+        return openStack.isEmpty();
     }
 }
